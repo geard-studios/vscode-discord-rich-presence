@@ -22,6 +22,10 @@ If you would like to contribute to the extension, see CONTRIBUTING.md
 
 ## Release Notes
 
+### 1.1.1
+
+-   Trying to make VSCE happy
+
 ### 1.1.0
 
 -   Added publisher name
