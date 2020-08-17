@@ -4,7 +4,7 @@
 	"description": "Shows information about the file you're editing as your Discord status",
 	"repository": "https://github.com/geard-studios/vscode-discord-rich-presence",
 	"publisher": "GeardStudios",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"engines": {
 		"vscode": "^1.48.0"
 	},
@@ -41,7 +41,8 @@
 		"glob": "^7.1.6",
 		"mocha": "^7.1.2",
 		"typescript": "^3.8.3",
-		"vscode-test": "^1.3.0"
+		"vscode-test": "^1.3.0",
+		"prettier": "^2.0.5"
 	},
 	"dependencies": {
 		"discord-rich-presence": "0.0.8"

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.1
+
+-   Added icon and improved README
+
 ## 1.2.0
 
 -   Added a deactivate function to call when extension is deactivated

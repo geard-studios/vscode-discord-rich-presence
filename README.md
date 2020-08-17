@@ -20,7 +20,15 @@
 
 If you would like to contribute to the extension, see CONTRIBUTING.md
 
+## Join our Discord
+
+Join our Discord at [discord.gg/TVb5UDz](discord.gg/TVb5UDz)
+
 ## Release Notes
+
+### 1.2.1
+
+-   Added icon and improved README
 
 ### 1.2.0
 
