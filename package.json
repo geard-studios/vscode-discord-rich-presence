@@ -3,6 +3,7 @@
 	"displayName": "VSCode Discord Rich Presence",
 	"description": "Shows information about the file you're editing as your Discord status",
 	"repository": "https://github.com/geard-studios/vscode-discord-rich-presence",
+	"icon": "https://raw.githubusercontent.com/geard-studios/vscode-discord-rich-presence/master/icon.png",
 	"publisher": "GeardStudios",
 	"version": "1.2.1",
 	"engines": {
