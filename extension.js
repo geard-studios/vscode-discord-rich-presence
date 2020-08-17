@@ -11,7 +11,6 @@ const client = require('discord-rich-presence')('744727185037983847');
  */
 function activate(context) {
 	console.log('VSCode Discord Rich Presence is active.');
-	var isEnabled = true;
 	const startTime = Date.now();
 	client.updatePresence({
 		startTimestamp: startTime,
@@ -22,8 +21,6 @@ function activate(context) {
 	let enableRP = vscode.commands.registerCommand(
 		'vscode-discord-rich-presence.enable',
 		function () {
-			var isEnabled = true;
-			console.log(isEnabled);
 			client.updatePresence({
 				startTimestamp: startTime,
 				largeImageKey: 'vscode-logo',
@@ -36,8 +33,6 @@ function activate(context) {
 	let disableRP = vscode.commands.registerCommand(
 		'vscode-discord-rich-presence.disable',
 		function () {
-			var isEnabled = false;
-			console.log(isEnabled);
 			client.updatePresence();
 			console.log('RPC Manually Disabled');
 			vscode.window.showInformationMessage('Rich Presence Disabled');
@@ -50,7 +45,11 @@ function activate(context) {
 exports.activate = activate;
 
 // this method is called when your extension is deactivated
-function deactivate() {}
+function deactivate() {
+	client.updatePresence();
+	console.log('VSCode Discord Rich Presence disabled.');
+	vscode.window.showInformationMessage('RPC Deactivated');
+}
 
 module.exports = {
 	activate,

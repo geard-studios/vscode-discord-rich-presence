@@ -22,6 +22,10 @@ If you would like to contribute to the extension, see CONTRIBUTING.md
 
 ## Release Notes
 
+### 1.2.0
+
+-   Added a deactivate function to call when extension is deactivated
+
 ### 1.1.1
 
 -   Trying to make VSCE happy

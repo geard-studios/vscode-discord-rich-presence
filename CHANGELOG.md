@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.0
+
+-   Added a deactivate function to call when extension is deactivated
+
 ## 1.1.1
 
 -   Trying to make VSCE happy
