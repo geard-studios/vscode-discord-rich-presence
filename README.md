@@ -22,6 +22,10 @@ If you would like to contribute to the extension, see CONTRIBUTING.md
 
 ## Release Notes
 
+### 1.1
+
+-   Added publisher name
+
 ### 1.0
 
 Initial release of the extension

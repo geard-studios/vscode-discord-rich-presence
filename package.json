@@ -2,6 +2,7 @@
 	"name": "vscode-discord-rich-presence",
 	"displayName": "VSCode Discord Rich Presence",
 	"description": "Shows information about the file you're editing as your Discord status",
+	"publisher": "GeardStudios",
 	"version": "1.0",
 	"engines": {
 		"vscode": "^1.48.0"
