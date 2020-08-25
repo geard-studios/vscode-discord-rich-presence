@@ -11,36 +11,89 @@ const client = require('discord-rich-presence')('744727185037983847');
  */
 function activate(context) {
 	console.log('VSCode Discord Rich Presence is active.');
+	let editor = vscode.window.activeTextEditor;
+	let fileName = editor.document.fileName;
 	const startTime = Date.now();
+	let isEnabled = true;
 	client.updatePresence({
 		startTimestamp: startTime,
 		largeImageKey: 'vscode-logo',
 		instance: true,
+		details: 'Workspace: ' + vscode.workspace.name,
+		state:
+			'Editing: ' +
+			fileName.substring(fileName.lastIndexOf('\\') + 1, fileName.length),
 	});
 
 	let enableRP = vscode.commands.registerCommand(
 		'vscode-discord-rich-presence.enable',
 		function () {
-			client.updatePresence({
-				startTimestamp: startTime,
-				largeImageKey: 'vscode-logo',
-				instance: true,
-			});
+			let isEnabled = true;
 			console.log('RPC Manually Enabled');
 			vscode.window.showInformationMessage('Rich Presence Enabled');
 		}
 	);
+
 	let disableRP = vscode.commands.registerCommand(
 		'vscode-discord-rich-presence.disable',
 		function () {
+			let isEnabled = false;
+			client.updatePresence({
+				startTimestamp: startTime,
+				largeImageKey: 'vscode-logo',
+				instance: true,
+				details: 'Workspace: ' + vscode.workspace.name,
+				state:
+					'Editing: ' +
+					fileName.substring(
+						fileName.lastIndexOf('\\') + 1,
+						fileName.length
+					),
+			});
 			client.updatePresence();
 			console.log('RPC Manually Disabled');
 			vscode.window.showInformationMessage('Rich Presence Disabled');
 		}
 	);
 
+	let changeWindowDetect = vscode.window.onDidChangeActiveTextEditor(() => {
+		client.updatePresence({
+			startTimestamp: startTime,
+			largeImageKey: 'vscode-logo',
+			instance: true,
+			details: 'Workspace: ' + vscode.workspace.name,
+			state:
+				'Editing: ' +
+				fileName.substring(
+					fileName.lastIndexOf('\\') + 1,
+					fileName.length
+				),
+		});
+	});
+
+	setInterval(() => {
+		if (isEnabled == true) {
+			client.updatePresence({
+				startTimestamp: startTime,
+				largeImageKey: 'vscode-logo',
+				instance: true,
+				details: 'Workspace: ' + vscode.workspace.name,
+				state:
+					'Editing: ' +
+					fileName.substring(
+						fileName.lastIndexOf('\\') + 1,
+						fileName.length
+					),
+			});
+			console.log('Updated Rich Presence');
+		} else {
+			client.updatePresence();
+		}
+	}, 1000);
+
 	context.subscriptions.push(enableRP);
 	context.subscriptions.push(disableRP);
+	context.subscriptions.push(changeWindowDetect);
 }
 exports.activate = activate;
 

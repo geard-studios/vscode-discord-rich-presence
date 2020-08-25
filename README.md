@@ -26,6 +26,10 @@ Join our Discord at [discord.gg/TVb5UDz](discord.gg/TVb5UDz)
 
 ## Release Notes
 
+### 2.0.0
+
+-   Added information on filename and workspace, we are aware of a glitch where the filename doesn't change. We would love it if you guys can help us out and contribute to fix it
+
 ### 1.2.1
 
 -   Added icon and improved README
