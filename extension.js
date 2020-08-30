@@ -9,12 +9,12 @@ const client = require('discord-rich-presence')('744727185037983847');
 /**
  * @param {vscode.ExtensionContext} context
  */
+
 function activate(context) {
 	console.log('VSCode Discord Rich Presence is active.');
 	let editor = vscode.window.activeTextEditor;
-	let fileName = editor.document.fileName;
+	var fileName = editor.document.fileName;
 	const startTime = Date.now();
-	let isEnabled = true;
 	client.updatePresence({
 		startTimestamp: startTime,
 		largeImageKey: 'vscode-logo',
@@ -28,7 +28,6 @@ function activate(context) {
 	let enableRP = vscode.commands.registerCommand(
 		'vscode-discord-rich-presence.enable',
 		function () {
-			let isEnabled = true;
 			console.log('RPC Manually Enabled');
 			vscode.window.showInformationMessage('Rich Presence Enabled');
 		}
@@ -37,7 +36,6 @@ function activate(context) {
 	let disableRP = vscode.commands.registerCommand(
 		'vscode-discord-rich-presence.disable',
 		function () {
-			let isEnabled = false;
 			client.updatePresence({
 				startTimestamp: startTime,
 				largeImageKey: 'vscode-logo',
@@ -56,7 +54,8 @@ function activate(context) {
 		}
 	);
 
-	let changeWindowDetect = vscode.window.onDidChangeActiveTextEditor(() => {
+	let changeWindowDetect = vscode.window.onDidChangeActiveTextEditor((e) => {
+		var activeDocName = e.document.fileName;
 		client.updatePresence({
 			startTimestamp: startTime,
 			largeImageKey: 'vscode-logo',
@@ -64,32 +63,12 @@ function activate(context) {
 			details: 'Workspace: ' + vscode.workspace.name,
 			state:
 				'Editing: ' +
-				fileName.substring(
+				activeDocName.substring(
 					fileName.lastIndexOf('\\') + 1,
-					fileName.length
+					activeDocName.length
 				),
 		});
 	});
-
-	setInterval(() => {
-		if (isEnabled == true) {
-			client.updatePresence({
-				startTimestamp: startTime,
-				largeImageKey: 'vscode-logo',
-				instance: true,
-				details: 'Workspace: ' + vscode.workspace.name,
-				state:
-					'Editing: ' +
-					fileName.substring(
-						fileName.lastIndexOf('\\') + 1,
-						fileName.length
-					),
-			});
-			console.log('Updated Rich Presence');
-		} else {
-			client.updatePresence();
-		}
-	}, 1000);
 
 	context.subscriptions.push(enableRP);
 	context.subscriptions.push(disableRP);
